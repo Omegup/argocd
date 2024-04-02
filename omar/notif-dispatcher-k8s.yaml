@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notif-dispatcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notif-dispatcher
+  template:
+    metadata:
+      labels:
+        app: notif-dispatcher
+    spec:
+      containers:
+      - name: notif-dispatcher
+        image: omegup/notif-dispatcher:V1.0.1 
+        ports:
+        - containerPort: 80
+        env:
+        - name: MONGO_URL
+          value: "mongodb://mongo-school:27017/meteor?replicaSet=rs0&directConnection=true"
+        - name: E_SENDER_URL
+          value: "http://email-sender:8080/send-email"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notif-dispatcher
+spec:
+  selector:
+    app: notif-dispatcher
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
