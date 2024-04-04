@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: editor-castflix-deployment
+  labels:
+    app: editor-castflix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: editor-castflix
+  template:
+    metadata:
+      labels:
+        app: editor-castflix
+    spec:
+      containers:
+      - name: editor-castflix
+        image: omegup/editor-castflix:e3e751f
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: editor-castflix-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: editor-castflix
+  ports:
+    - port: 80
+      targetPort: 80

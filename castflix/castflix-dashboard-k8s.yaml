@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: castflix-dashboard-deployment
+  labels:
+    app: castflix-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: castflix-dashboard
+  template:
+    metadata:
+      labels:
+        app: castflix-dashboard
+    spec:
+      containers:
+      - name: castflix-dashboard
+        image: omegup/castflix-dashboard:e3e751f
+        ports:
+        - containerPort: 4000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: castflix-dashboard-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 4000
+    targetPort: 4000
+    protocol: TCP
+  selector:
+    app: castflix-dashboard

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: castflix-back-deployment
+  labels:
+    app: castflix-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: castflix-back
+  template:
+    metadata:
+      labels:
+        app: castflix-back
+    spec:
+      containers:
+      - name: castflix-back
+        image: omegup/castflix-back:e3e751f
+        ports:
+        - containerPort: 3002
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        volumeMounts:
+        - name: photo-video-storage
+          mountPath: /images
+      volumes:
+      - name: photo-video-storage
+        persistentVolumeClaim:
+          claimName: cast-backend-pvc
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: castflix-back-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3002
+    targetPort: 3002
+    protocol: TCP
+  selector:
+    app: castflix-back

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: castflix-front-deployment
+  labels:
+    app: castflix-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: castflix-front
+  template:
+    metadata:
+      labels:
+        app: castflix-front
+    spec:
+      containers:
+      - name: castflix-front
+        image: omegup/castflix-front:e3e751f
+        ports:
+        - containerPort: 80 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: castflix-front-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80 
+    protocol: TCP
+  selector:
+    app: castflix-front
