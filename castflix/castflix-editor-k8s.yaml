@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: editor-castflix
-        image: omegup/editor-castflix:e3e751f
+        image: omegup/editor-castflix:667e398
         ports:
         - containerPort: 80
 ---
@@ -25,7 +25,7 @@ kind: Service
 metadata:
   name: editor-castflix-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: editor-castflix
   ports:

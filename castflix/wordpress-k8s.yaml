@@ -45,7 +45,7 @@ kind: Service
 metadata:
   name: wordpress
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 8080
     targetPort: 80

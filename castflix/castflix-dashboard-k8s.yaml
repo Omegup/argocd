@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: castflix-dashboard
-        image: omegup/castflix-dashboard:e3e751f
+        image: omegup/castflix-dashboard:667e398
         ports:
         - containerPort: 4000
 
@@ -27,7 +27,7 @@ kind: Service
 metadata:
   name: castflix-dashboard-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 4000
     targetPort: 4000

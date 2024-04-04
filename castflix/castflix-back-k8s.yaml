@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: castflix-back
-        image: omegup/castflix-back:e3e751f
+        image: omegup/castflix-back:667e398
         ports:
         - containerPort: 3002
         resources:
@@ -40,7 +40,7 @@ kind: Service
 metadata:
   name: castflix-back-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 3002
     targetPort: 3002
