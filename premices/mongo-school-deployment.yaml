@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-school
+  labels:
+    app: mongo-school
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-school
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: mongo-school
+      labels:
+        app: mongo-school
+    spec:
+      containers:
+        - args:
+            - --storageEngine=wiredTiger
+            - --replSet=rs0
+          image: mongo:latest
+          name: mongo-school
+          resources: {}
+          volumeMounts:
+            - mountPath: /docker-entrypoint-initdb.d/init-rs.js
+              name: mongo-school-claim0
+            - mountPath: /data/db
+              name: data-school-db
+      restartPolicy: Always
+      volumes:
+        - name: mongo-school-claim0
+          persistentVolumeClaim:
+            claimName: mongo-school-claim0
+        - name: data-school-db
+          persistentVolumeClaim:
+            claimName: mongo-school
+status: {}

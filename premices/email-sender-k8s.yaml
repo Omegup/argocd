@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-sender
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-sender
+  template:
+    metadata:
+      labels:
+        app: email-sender
+    spec:
+      containers:
+      - name: email-sender
+        image: omegup/email-sender:V1.2.3 
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-sender
+spec:
+  type: ClusterIP
+  selector:
+    app: email-sender
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP

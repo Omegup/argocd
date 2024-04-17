@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ creationTimestamp: null
+ labels:
+   app: sync-schedule
+ name: sync-schedule
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: sync-schedule
+ strategy: {}
+ template:
+   metadata:
+     creationTimestamp: null
+     labels:
+       app: sync-schedule
+   spec:
+     containers:
+       - args:
+           - --expose-gc
+           - schedule.js
+         env:
+           - name: MONGO_URL
+             value: mongodb://mongo-school:27017/meteor?replicaSet=rs0&directConnection=true
+         image: omegup/school-sync-schedule:V1.2.3
+         name: sync-schedule
+         resources: {}
+     restartPolicy: Always
+status: {}
