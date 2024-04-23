@@ -16,7 +16,7 @@ spec:
    spec:
      containers:
        - name: front-school
-         image: omegup/school-front:V1.2.5
+         image: omegup/school-front:V1.2.3
          ports:
            - containerPort: 80
          env:
