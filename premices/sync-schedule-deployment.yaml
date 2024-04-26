@@ -24,7 +24,7 @@ spec:
          env:
            - name: MONGO_URL
              value: mongodb://mongo-school:27017/meteor?replicaSet=rs0&directConnection=true
-         image: omegup/school-sync-schedule:V1.2.3
+         image: omegup/school-sync-schedule:V1.2.7
          name: sync-schedule
          resources: {}
      restartPolicy: Always
