@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: front-school
+ labels:
+   app: front-school
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: front-school
+ template:
+   metadata:
+     labels:
+       app: front-school
+   spec:
+     containers:
+       - name: front-school
+         image: omegup/school-front:V1.2.9
+         ports:
+           - containerPort: 80
+         env:
+           - name: BACKEND_SERVER
+             value: back-school
+           - name: LETSENCRYPT_EMAIL
+             value: admin@omegup.tn
+           - name: LETSENCRYPT_HOST
+             value: schoolonline.tn
+           - name: VIRTUAL_HOST
+             value: schoolonline.tn
+           - name: VIRTUAL_PORT
+             value: "80"
+     restartPolicy: Always
