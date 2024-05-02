@@ -18,7 +18,7 @@ spec:
   spec:
     containers:
       - name: back-school
-        image: omegup/school-back:V1.2.8 
+        image: omegup/school-back:V1.3.0 
         ports:
           - containerPort: 3001
         env:
