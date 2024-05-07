@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: email-sender
-        image: omegup/email-sender:V1.3.0 
+        image: omegup/email-sender:V1.3.1 
         ports:
         - containerPort: 8080
 ---
