@@ -11,10 +11,13 @@ spec:
     metadata:
       labels:
         app: email-sender
+      annotations:
+        commit-id: 21aba24
     spec:
       containers:
       - name: email-sender
         image: omegup/email-sender:V1.3.2 
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
 ---

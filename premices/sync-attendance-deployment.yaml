@@ -16,6 +16,8 @@ spec:
      creationTimestamp: null
      labels:
        app: sync-attendance
+     annotations:
+       commit-id: 21aba24
    spec:
      containers:
        - args:
@@ -25,6 +27,7 @@ spec:
            - name: MONGO_URL
              value: mongodb://mongo-school:27017/meteor?replicaSet=rs0&directConnection=true
          image: omegup/school-sync-attendance:V1.3.2
+         imagePullPolicy: Always
          name: sync-attendance
          resources: {}
      restartPolicy: Always

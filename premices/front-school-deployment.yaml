@@ -13,10 +13,13 @@ spec:
    metadata:
      labels:
        app: front-school
+     annotations:
+       commit-id: 21aba24
    spec:
      containers:
        - name: front-school
          image: omegup/school-front:V1.3.2
+         imagePullPolicy: Always
          ports:
            - containerPort: 80
          env:
