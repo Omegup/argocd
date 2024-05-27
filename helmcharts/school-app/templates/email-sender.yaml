@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-sender
+spec:
+  replicas: {{ .Values.emailSender.replicas }}
+  selector:
+    matchLabels:
+      app: email-sender
+  template:
+    metadata:
+      labels:
+        app: email-sender
+      annotations:
+        commit-id: "{{ .Values.commitTrack }}"
+    spec:
+      containers:
+      - name: email-sender
+        image: omegup/email-sender:{{ .Values.commitTag }} 
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.emailSender.containerPort }}
+        env:
+        - name: RABBITMQ_URL
+          value: "{{ .Values.rabbitmqUrl }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-sender
+spec:
+  type: ClusterIP
+  selector:
+    app: email-sender
+  ports:
+  - port: {{ .Values.emailSender.containerPort }}
+    targetPort: {{ .Values.emailSender.containerPort }}
+    protocol: TCP

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sync-attendance
+  labels:
+    app: sync-attendance
+spec:
+  replicas: {{ .Values.sync.replicas }}
+  selector:
+    matchLabels:
+      app: sync-attendance
+  template:
+    metadata:
+      labels:
+        app: sync-attendance
+      annotations:
+        commit-id: "{{ .Values.commitTrack }}"
+    spec:
+      containers:
+      - args:
+        - --expose-gc
+        - attendance.js
+        env:
+        - name: MONGO_URL
+          value: "{{ .Values.mongoUrl }}"
+        image: omegup/school-sync-attendance:{{ .Values.commitTag }}
+        imagePullPolicy: Always
+        name: sync-attendance
+      restartPolicy: Always

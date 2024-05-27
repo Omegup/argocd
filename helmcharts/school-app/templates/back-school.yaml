@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-school
+  labels:
+    app: back-school
+spec:
+  replicas: {{ .Values.backSchool.replicas }}
+  selector:
+    matchLabels:
+      app: back-school
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: back-school
+      annotations:
+        commit-id: "{{ .Values.commitTrack }}"
+    spec:
+      containers:
+        - name: back-school
+          image: omegup/school-back:{{ .Values.commitTag }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.backSchool.containerPort }}
+          env:
+            - name: METEOR_SETTINGS
+              value: {{ .Values.backSchool.meteorSettings | quote }}
+            - name: MONGO_OPLOG_URL
+              value: {{ .Values.mongoOplogUrl | quote }}
+            - name: MONGO_URL
+              value: {{ .Values.mongoUrl | quote }}
+            - name: PORT
+              value: "{{ .Values.backSchool.port }}"
+            - name: ROOT_URL
+              value: {{ .Values.backSchool.rootUrl | quote }}
+          volumeMounts:
+            - mountPath: /home/node
+              name: data-school-back
+      restartPolicy: Always
+      volumes:
+        - name: data-school-back
+          persistentVolumeClaim:
+            claimName: data-school-back
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-school
+spec:
+  ports:
+    - name: "http"
+      port: {{ .Values.backSchool.servicePort }}
+      targetPort: {{ .Values.backSchool.serviceTargetPort }}
+  selector:
+    app: back-school

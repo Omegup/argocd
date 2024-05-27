@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sync-schedule
+  labels:
+    app: sync-schedule
+spec:
+  replicas: {{ .Values.sync.replicas }}
+  selector:
+    matchLabels:
+      app: sync-schedule
+  template:
+    metadata:
+      labels:
+        app: sync-schedule
+      annotations:
+        commit-id: "{{ .Values.commitTrack }}"
+    spec:
+      containers:
+      - args:
+        - --expose-gc
+        - schedule.js
+        env:
+        - name: MONGO_URL
+          value: "{{ .Values.mongoUrl }}"
+        image: omegup/school-sync-schedule:{{ .Values.commitTag }}
+        imagePullPolicy: Always
+        name: sync-schedule
+      restartPolicy: Always

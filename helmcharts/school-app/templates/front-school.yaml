@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-school
+  labels:
+    app: front-school
+spec:
+  replicas: {{ .Values.frontSchool.replicas }}
+  selector:
+    matchLabels:
+      app: front-school
+  template:
+    metadata:
+      labels:
+        app: front-school
+      annotations:
+        commit-id: "{{ .Values.commitTrack }}"
+    spec:
+      containers:
+      - name: front-school
+        image: omegup/school-front:{{ .Values.commitTag }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.frontSchool.containerPort }}
+        env:
+        - name: BACKEND_SERVER
+          value: {{ .Values.backendServer }}
+        - name: LETSENCRYPT_EMAIL
+          value: {{ .Values.letsencryptEmail }}
+        - name: LETSENCRYPT_HOST
+          value: {{ .Values.letsencryptHost }}
+        - name: VIRTUAL_HOST
+          value: {{ .Values.virtualHost }}
+        - name: VIRTUAL_PORT
+          value: "{{ .Values.virtualPort }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-school
+  labels:
+    app: front-school
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: {{ .Values.frontSchool.containerPort }}
+    targetPort: {{ .Values.frontSchool.containerPort }}
+  selector:
+    app: front-school

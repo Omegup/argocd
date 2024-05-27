@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sync-server
+  labels:
+    app: sync-server
+spec:
+  replicas: {{ .Values.sync.replicas }}
+  selector:
+    matchLabels:
+      app: sync-server
+  template:
+    metadata:
+      labels:
+        app: sync-server
+      annotations:
+        commit-id: "{{ .Values.commitTrack }}"
+    spec:
+      containers:
+      - args:
+        - --expose-gc
+        - server.js
+        env:
+        - name: MONGO_URL
+          value: "{{ .Values.mongoUrl }}"
+        image: omegup/school-sync-server:{{ .Values.commitTag }}
+        imagePullPolicy: Always
+        name: sync-server
+      restartPolicy: Always

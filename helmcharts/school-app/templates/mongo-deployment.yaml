@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "school-app.mongo.fullname" . }}
+  labels:
+    app: {{ include "school-app.mongo.name" . }}
+spec:
+  replicas: {{ .Values.mongo.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "school-app.mongo.name" . }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ include "school-app.mongo.name" . }}
+    spec:
+      containers:
+        - name: {{ include "school-app.mongo.name" . }}
+          image: "{{ .Values.mongo.image.repository }}:{{ .Values.mongo.image.tag }}"
+          imagePullPolicy: {{ .Values.mongo.image.pullPolicy }}
+          args:
+            - --storageEngine=wiredTiger
+            - --replSet=rs0
+            - --wiredTigerCacheSizeGB=0.5
+          resources:
+            requests:
+              memory: {{ .Values.mongo.resources.requests.memory }}
+              cpu: {{ .Values.mongo.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.mongo.resources.limits.memory }}
+              cpu: {{ .Values.mongo.resources.limits.cpu }}
+          volumeMounts:
+            - mountPath: /data/db
+              name: data-school-db
+      restartPolicy: Always
+      volumes:
+        - name: data-school-db
+          persistentVolumeClaim:
+            claimName: {{ include "school-app.mongo.fullname" . }}
+        - name: mongo-school-claim0
+          persistentVolumeClaim:
+            claimName: {{ include "school-app.mongo.fullname" . }}-claim0

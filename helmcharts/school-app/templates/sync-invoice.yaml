@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sync-invoice
+  labels:
+    app: sync-invoice
+spec:
+  replicas: {{ .Values.sync.replicas }}
+  selector:
+    matchLabels:
+      app: sync-invoice
+  template:
+    metadata:
+      labels:
+        app: sync-invoice
+      annotations:
+        commit-id: "{{ .Values.commitTrack }}"
+    spec:
+      containers:
+      - args:
+        - --expose-gc
+        - invoice.js
+        env:
+        - name: MONGO_URL
+          value: "{{ .Values.mongoUrl }}"
+        image: omegup/school-sync-invoice:{{ .Values.commitTag }}
+        imagePullPolicy: Always
+        name: sync-invoice
+      restartPolicy: Always
