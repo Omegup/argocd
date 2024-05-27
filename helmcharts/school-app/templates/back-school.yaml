@@ -36,13 +36,13 @@ spec:
             - name: ROOT_URL
               value: {{ .Values.backSchool.rootUrl | quote }}
           volumeMounts:
-            - mountPath: /home/node
+            - mountPath: /data/back
               name: data-school-back
       restartPolicy: Always
       volumes:
         - name: data-school-back
           persistentVolumeClaim:
-            claimName: {{- define "school-app.back-school.fullname" .}}
+            claimName: {{ define "school-app.back-school.fullname" .}}
 ---
 apiVersion: v1
 kind: Service
