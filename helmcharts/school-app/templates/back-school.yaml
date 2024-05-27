@@ -42,7 +42,7 @@ spec:
       volumes:
         - name: data-school-back
           persistentVolumeClaim:
-            claimName: data-school-back
+            claimName: {{- define "school-app.back-school.fullname" .}}
 ---
 apiVersion: v1
 kind: Service
