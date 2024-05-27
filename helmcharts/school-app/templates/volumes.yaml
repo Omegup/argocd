@@ -61,9 +61,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: data-school-back-pv
+  name: {{ include "school-app.back-school.fullname" . }}
   labels:
-    app: back-school
+    app: {{ include "school-app.back-school.name" . }}
 spec:
   capacity:
     storage: {{ .Values.backSchool.persistence.size }}
@@ -72,14 +72,14 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Values.backSchool.persistence.storageClass | quote }}
   hostPath:
-    path: /mnt/data/data-school-back-pv
+    path: /mnt/data/{{ include "school-app.back-school.fullname" . }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: data-school-back
+  name: {{ include "school-app.back-school.fullname" . }}
   labels:
-    app: back-school
+    app: {{ include "school-app.back-school.name" . }}
 spec:
   accessModes:
     - {{ .Values.backSchool.persistence.accessMode }}
