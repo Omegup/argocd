@@ -76,3 +76,19 @@ Create the name of the service account to use
 {{- printf "%s-mongo" (include "school-app.fullname" .) -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "school-app.back-school.name" -}}
+{{- if .Values.backSchool.nameOverride -}}
+{{- .Values.backSchool.nameOverride -}}
+{{- else -}}
+{{- printf "%s-back-school" (include "school-app.name" .) -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "school-app.back-school.fullname" -}}
+{{- if .Values.backSchool.fullnameOverride -}}
+{{- .Values.backSchool.fullnameOverride -}}
+{{- else -}}
+{{- printf "%s-back-school" (include "school-app.fullname" .) -}}
+{{- end -}}
+{{- end -}}
