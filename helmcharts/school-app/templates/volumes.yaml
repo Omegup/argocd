@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "school-app.mongo.fullname" . }}
+  labels:
+    app: {{ include "school-app.mongo.name" . }}
+spec:
+  capacity:
+    storage: {{ .Values.mongo.persistence.claim.size }}
+  accessModes:
+    - {{ .Values.mongo.persistence.claim.accessMode }}
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.mongo.persistence.claim.storageClass | quote }}
+  hostPath:
+    path: /mnt/data/{{ include "school-app.mongo.fullname" . }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "school-app.mongo.fullname" . }}-pv0
+  labels:
+    app: {{ include "school-app.mongo.name" . }}
+spec:
+  capacity:
+    storage: {{ .Values.mongo.persistence.claim0.size }}
+  accessModes:
+    - {{ .Values.mongo.persistence.claim0.accessMode }}
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.mongo.persistence.claim0.storageClass | quote }}
+  hostPath:
+    path: /mnt/data/{{ include "school-app.mongo.fullname" . }}-pv0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "school-app.mongo.fullname" . }}
+  labels:
+    app: {{ include "school-app.mongo.name" . }}
+spec:
+  accessModes:
+    - {{ .Values.mongo.persistence.claim.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.mongo.persistence.claim.size }}
+  storageClassName: {{ .Values.mongo.persistence.claim.storageClass | quote }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "school-app.mongo.fullname" . }}-claim0
+  labels:
+    app: {{ include "school-app.mongo.name" . }}
+spec:
+  accessModes:
+    - {{ .Values.mongo.persistence.claim0.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.mongo.persistence.claim0.size }}
+  storageClassName: {{ .Values.mongo.persistence.claim0.storageClass | quote }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-school-back-pv
+  labels:
+    app: back-school
+spec:
+  capacity:
+    storage: {{ .Values.backSchool.persistence.size }}
+  accessModes:
+    - {{ .Values.backSchool.persistence.accessMode }}
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.backSchool.persistence.storageClass | quote }}
+  hostPath:
+    path: /mnt/data/data-school-back-pv
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-school-back
+  labels:
+    app: back-school
+spec:
+  accessModes:
+    - {{ .Values.backSchool.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.backSchool.persistence.size }}
+  storageClassName: {{ .Values.backSchool.persistence.storageClass | quote }}
