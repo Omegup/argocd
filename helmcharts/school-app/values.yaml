@@ -150,7 +150,6 @@ notifDispatcher:
 
 sync:
   replicas: 1
-# Existing configurations...
 
 mongo:
   replicaCount: 1
