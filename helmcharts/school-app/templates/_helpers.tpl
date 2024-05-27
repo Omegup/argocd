@@ -77,6 +77,7 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
+
 {{- define "school-app.back-school.name" -}}
 {{- if .Values.backSchool.nameOverride -}}
 {{- .Values.backSchool.nameOverride -}}
