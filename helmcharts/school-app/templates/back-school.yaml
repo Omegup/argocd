@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: back-school
-          image: omegup/school-back:{{ .Values.commitTag }}
+          image: omegup/school-back:{{ .Values.env.commitTag }}
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.backSchool.containerPort }}

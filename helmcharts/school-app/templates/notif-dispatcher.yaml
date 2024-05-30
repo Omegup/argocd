@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: notif-dispatcher
-        image: omegup/notif-dispatcher:{{ .Values.commitTag }}
+        image: omegup/notif-dispatcher:{{ .Values.env.commitTag }}
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.notifDispatcher.containerPort }}

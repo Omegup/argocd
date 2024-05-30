@@ -108,6 +108,7 @@ affinity: {}
 
 
 #*************************************************************************************#
+env: "preprod"
 commitTrack: "some-commit-id"
 preprod:
   commitTag: ""

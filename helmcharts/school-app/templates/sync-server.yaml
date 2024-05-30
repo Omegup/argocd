@@ -14,7 +14,7 @@ spec:
       labels:
         app: sync-server
       annotations:
-        commit-id: "{{ .Values.commitTrack }}"
+        commit-id: "{{ .Values.env.commitTrack }}"
     spec:
       containers:
       - args:

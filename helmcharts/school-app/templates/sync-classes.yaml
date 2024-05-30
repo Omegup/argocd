@@ -23,7 +23,7 @@ spec:
         env:
         - name: MONGO_URL
           value: "{{ .Values.mongoUrl }}"
-        image: omegup/school-sync-classes:{{ .Values.commitTag }}
+        image: omegup/school-sync-classes:{{ .Values.env.commitTag }}
         imagePullPolicy: Always
         name: sync-classes
       restartPolicy: Always

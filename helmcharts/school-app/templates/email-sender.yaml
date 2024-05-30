@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: email-sender
-        image: omegup/email-sender:{{ .Values.commitTag }} 
+        image: omegup/email-sender:{{ .Values.env.commitTag }} 
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.emailSender.containerPort }}
