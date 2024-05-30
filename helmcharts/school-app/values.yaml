@@ -111,9 +111,9 @@ affinity: {}
 env: "preprod"
 commitTrack: "some-commit-id"
 preprod:
-  commitTag: ""
+  commitTag: "V1.0.0"
 prod:
-  commitTag: ""
+  commitTag: "V1.0.0"
   
 rabbitmqUrl: "amqp://rabbitmq.rabbits:5672"
 mongoOplogUrl: "mongodb://school-app-mongo:27017/local?directConnection=true"
