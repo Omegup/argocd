@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: notif-dispatcher
-        image: omegup/notif-dispatcher:{{ include "school-app.commitTag" . }}
+        image: omegup/notif-dispatcher:{{ .Values.commitTag }}
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.notifDispatcher.containerPort }}
