@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: front-school
-        image: omegup/school-front:{{ include "school-app.commitTag" . }}
+        image: omegup/school-front:{{ .Values.commitTag }}
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.frontSchool.containerPort }}

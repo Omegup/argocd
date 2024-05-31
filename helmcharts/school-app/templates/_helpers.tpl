@@ -93,12 +93,3 @@ Create the name of the service account to use
 {{- printf "%s-back-school" (include "school-app.fullname" .) -}}
 {{- end -}}
 {{- end -}}
-
-
-{{- define "school-app.commitTag" -}}
-{{- if eq .Values.env "prod" -}}
-{{ .Values.prodCommitTag }}
-{{- else -}}
-{{ .Values.preprodCommitTag }}
-{{- end -}}
-{{- end -}}
