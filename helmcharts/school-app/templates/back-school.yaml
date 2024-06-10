@@ -35,6 +35,36 @@ spec:
               value: "{{ .Values.backSchool.port }}"
             - name: ROOT_URL
               value: {{ .Values.backSchool.rootUrl | quote }}
+            - name: SCHOOL_LOGO
+              value: {{ .Values.backSchool.SCHOOL_LOGO }}
+            - name: SCHOOL_EMAIL
+              value: {{ .Values.backSchool.SCHOOL_EMAIL }}
+            - name: SCHOOL_PHONE
+              value: {{ .Values.backSchool.SCHOOL_PHONE }}
+            - name: SCHOOL_NAME
+              value: {{ .Values.backSchool.SCHOOL_NAME }}
+            - name: SCHOOL_FACEBOOK
+              value: {{ .Values.backSchool.SCHOOL_FACEBOOK }}
+            - name: SCHOOL_YOUTUBE
+              value: {{ .Values.backSchool.SCHOOL_YOUTUBE }}
+            - name: SCHOOL_INSTAGRAM
+              value: {{ .Values.backSchool.SCHOOL_INSTAGRAM }}
+            - name: SCHOOL_LINKEDIN
+              value: {{ .Values.backSchool.SCHOOL_LINKEDIN }}
+            - name: SCHOOL_TWITTER
+              value: {{ .Values.backSchool.SCHOOL_TWITTER }}
+            - name: SCHOOL_URL
+              value: {{ .Values.backSchool.SCHOOL_URL }}
+            - name: SCHOOL_MAX_USERS
+              value: {{ .Values.backSchool.SCHOOL_MAX_USERS }}
+            - name: LIMIT
+              value: {{ .Values.backSchool.LIMIT }}
+            - name: LANG_SYSTEM
+              value: {{ .Values.backSchool.LANG_SYSTEM }}
+            - name: SERVER_SYNC_IP     
+              value: {{Values.SERVER_SYNC_IP}}
+            - name: SERVER_SYNC_PORT
+              value: "{{.Values.SERVER_SYNC_PORT}}"
           volumeMounts:
             - mountPath: /data/back
               name: data-school-back

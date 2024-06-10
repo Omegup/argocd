@@ -110,12 +110,14 @@ affinity: {}
 #*************************************************************************************#
 env: "preprod"
 commitTrack: "some-commit-id"
-preprodCommitTag: "V1.0.4"
-prodCommitTag: "V1.0.3"
+preprodCommitTag: "V1.0.5"
+prodCommitTag: "V1.0.4"
   
 rabbitmqUrl: "amqp://rabbitmq.rabbits:5672"
 mongoOplogUrl: "mongodb://school-app-mongo:27017/local?directConnection=true"
 mongoUrl: "mongodb://school-app-mongo:27017/meteor?replicaSet=rs0&directConnection=true"
+SERVER_SYNC_PORT: 4500
+SERVER_SYNC_IP: "sync-server"
 
 backSchool:
   replicas: 1
@@ -125,6 +127,19 @@ backSchool:
   rootUrl: "http://localhost"
   servicePort: 3001
   serviceTargetPort: 3001
+  SCHOOL_LOGO: ""
+  SCHOOL_EMAIL: "email@gg.com"
+  SCHOOL_PHONE: "12345678"
+  SCHOOL_NAME: "Name"
+  SCHOOL_FACEBOOK: ""
+  SCHOOL_YOUTUBE: ""
+  SCHOOL_INSTAGRAM: ""
+  SCHOOL_LINKEDIN: ""
+  SCHOOL_TWITTER: ""
+  SCHOOL_URL: ""
+  SCHOOL_MAX_USERS: "false"
+  LIMIT: "30"
+  LANG_SYSTEM: "'fr'"     
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
