@@ -62,7 +62,7 @@ spec:
             - name: LANG_SYSTEM
               value: {{ .Values.backSchool.LANG_SYSTEM }}
             - name: SERVER_SYNC_IP     
-              value: {{Values.SERVER_SYNC_IP}}
+              value: {{ .Values.SERVER_SYNC_IP}}
             - name: SERVER_SYNC_PORT
               value: "{{.Values.SERVER_SYNC_PORT}}"
           volumeMounts:
