@@ -26,7 +26,7 @@ spec:
             - containerPort: {{ .Values.backSchool.containerPort }}
           env:
           - name: METEOR_SETTINGS
-            value: {{ .Values.backSchool.meteorSettings | quote }}
+            value: {{ .Values.backSchool.meteorSettings | toJson | quote }}
           - name: MONGO_OPLOG_URL
             value: {{ .Values.mongoOplogUrl | quote }}
           - name: MONGO_URL
