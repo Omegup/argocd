@@ -24,9 +24,9 @@ spec:
         - name: MONGO_URL
           value: "{{ .Values.mongoUrl }}"
         - name: SERVER_SYNC_IP     
-          value: {{ .Values.SERVER_SYNC_IP}}
+          value: {{ .Values.SERVER_SYNC_IP | quote }}
         - name: SERVER_SYNC_PORT
-          value: {{ .Values.SERVER_SYNC_PORT}}
+          value: {{ .Values.SERVER_SYNC_PORT | quote }}
         image: omegup/school-sync-server:{{ include "school-app.commitTag" . }}
         imagePullPolicy: Always
         name: sync-server
