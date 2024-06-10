@@ -31,3 +31,16 @@ spec:
         imagePullPolicy: Always
         name: sync-server
       restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sync-server
+spec:
+  type: ClusterIP
+  selector:
+    app:  sync-server
+  ports:
+  - port: 4500
+    targetPort: 4500
+    protocol: TCP
