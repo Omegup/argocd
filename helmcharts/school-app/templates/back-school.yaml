@@ -36,8 +36,10 @@ spec:
           - name: RABBITMQ_URL
             value: {{ .Values.rabbitmqUrl | quote }}
           {{- range $key, $value := .Values.backSchool }}
+          {{- if not (or (eq $key "replicas") (eq $key "containerPort") (eq $key "servicePort") (eq $key "serviceTargetPort") ) }}
           - name: {{ $key }}
             value: {{ $value | quote }}
+          {{- end }}
           {{- end }}
           volumeMounts:
             - mountPath: /data/back
