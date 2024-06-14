@@ -25,46 +25,20 @@ spec:
           ports:
             - containerPort: {{ .Values.backSchool.containerPort }}
           env:
-          - name: METEOR_SETTINGS
-            value: {{ .Values.backSchool.meteorSettings | toJson | quote }}
           - name: MONGO_OPLOG_URL
             value: {{ .Values.mongoOplogUrl | quote }}
           - name: MONGO_URL
             value: {{ .Values.mongoUrl | quote }}
-          - name: PORT
-            value: {{ .Values.backSchool.port | quote }}
-          - name: ROOT_URL
-            value: {{ .Values.backSchool.rootUrl | quote }}
-          - name: SCHOOL_LOGO
-            value: {{ .Values.backSchool.SCHOOL_LOGO | quote }}
-          - name: SCHOOL_EMAIL
-            value: {{ .Values.backSchool.SCHOOL_EMAIL | quote }}
-          - name: SCHOOL_PHONE
-            value: {{ .Values.backSchool.SCHOOL_PHONE | quote }}
-          - name: SCHOOL_NAME
-            value: {{ .Values.backSchool.SCHOOL_NAME | quote }}
-          - name: SCHOOL_FACEBOOK
-            value: {{ .Values.backSchool.SCHOOL_FACEBOOK | quote }}
-          - name: SCHOOL_YOUTUBE
-            value: {{ .Values.backSchool.SCHOOL_YOUTUBE | quote }}
-          - name: SCHOOL_INSTAGRAM
-            value: {{ .Values.backSchool.SCHOOL_INSTAGRAM | quote }}
-          - name: SCHOOL_LINKEDIN
-            value: {{ .Values.backSchool.SCHOOL_LINKEDIN | quote }}
-          - name: SCHOOL_TWITTER
-            value: {{ .Values.backSchool.SCHOOL_TWITTER | quote }}
-          - name: SCHOOL_URL
-            value: {{ .Values.backSchool.SCHOOL_URL | quote }}
-          - name: SCHOOL_MAX_USERS
-            value: {{ .Values.backSchool.SCHOOL_MAX_USERS | quote }}
-          - name: LIMIT
-            value: {{ .Values.backSchool.LIMIT | quote }}
-          - name: LANG_SYSTEM
-            value: {{ .Values.backSchool.LANG_SYSTEM | quote }}
           - name: SERVER_SYNC_IP     
             value: {{ .Values.SERVER_SYNC_IP | quote }}
           - name: SERVER_SYNC_PORT
             value: {{ .Values.SERVER_SYNC_PORT | quote }}
+          - name: RABBITMQ_URL
+            value: {{ .Values.rabbitmqUrl | quote }}
+          {{- range $key, $value := .Values.backSchool }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+          {{- end }}
           volumeMounts:
             - mountPath: /data/back
               name: data-school-back

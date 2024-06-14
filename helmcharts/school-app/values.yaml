@@ -110,29 +110,37 @@ affinity: {}
 #*************************************************************************************#
 env: "preprod"
 commitTrack: "some-commit-id"
-preprodCommitTag: "V1.1.1"
-prodCommitTag: "V1.1.0"
+preprodCommitTag: "V1.1.2"
+prodCommitTag: "V1.1.1"
   
 rabbitmqUrl: "amqp://rabbitmq.rabbits:5672"
 mongoOplogUrl: "mongodb://school-app-mongo:27017/local?directConnection=true"
 mongoUrl: "mongodb://school-app-mongo:27017/meteor?replicaSet=rs0&directConnection=true"
-SERVER_SYNC_PORT: "4500"
+SERVER_SYNC_PORT: 4500
 SERVER_SYNC_IP: "sync-server"
 
 backSchool:
   replicas: 1
   containerPort: 3001
-  meteorSettings:
-    STORAGE_PATH_IMAGES: "/home/node/school/school-images/images/"
-    STORAGE_PATH_FILES: "/home/node/school/school-files/files/"
-    STORAGE_PATH_EXELS: "/home/node/school/school-files/excels/"
-    STORAGE_PATH_VIDEOS: "/home/node/school/school-videos/videos/"
-    STORAGE_PATH_AUDIOS: "/home/node/school/school-audios/audios/"
-    SCHOOL_ADDRESS: "Address"
   port: 3001
   rootUrl: "http://localhost"
   servicePort: 3001
   serviceTargetPort: 3001
+  CONSTANTS: "true"
+  SETTING: "true"
+  ACADEMIC_SETTINGS: "true"
+  HUMAN_RESOURCE: "true"
+  MESSAGES: "true"
+  EVENTS_NOTES_HOMEWORK: "true"
+  EXAMS: "true"
+  FINANCE: "true"
+  SESSIONS: "true"
+  STORAGE_PATH_IMAGES: "/home/node/school/school-images/images/"
+  STORAGE_PATH_FILES: "/home/node/school/school-files/files/"
+  STORAGE_PATH_EXELS: "/home/node/school/school-files/excels/"
+  STORAGE_PATH_VIDEOS: "/home/node/school/school-videos/videos/"
+  STORAGE_PATH_AUDIOS: "/home/node/school/school-audios/audios/"
+  SCHOOL_ADDRESS: "Adress"
   SCHOOL_LOGO: ""
   SCHOOL_EMAIL: "email@gg.com"
   SCHOOL_PHONE: "12345678"

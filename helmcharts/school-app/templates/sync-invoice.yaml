@@ -23,7 +23,7 @@ spec:
         env:
         - name: MONGO_URL
           value: "{{ .Values.mongoUrl }}"
-        image: omegup/school-sync-invoice:{{ include "school-app.commitTag" . }}
+        image: omegup/school-sync:{{ include "school-app.commitTag" . }}
         imagePullPolicy: Always
         name: sync-invoice
       restartPolicy: Always

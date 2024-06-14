@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sync-classes
+  name: sync-users
   labels:
-    app: sync-classes
+    app: sync-users
 spec:
   replicas: {{ .Values.sync.replicas }}
   selector:
     matchLabels:
-      app: sync-classes
+      app: sync-users
   template:
     metadata:
       labels:
-        app: sync-classes
+        app: sync-users
       annotations:
         commit-id: "{{ .Values.commitTrack }}"
     spec:
       containers:
       - args:
         - --expose-gc
-        - classes.js
+        - users.js
         env:
         - name: MONGO_URL
           value: "{{ .Values.mongoUrl }}"
         image: omegup/school-sync:{{ include "school-app.commitTag" . }}
         imagePullPolicy: Always
-        name: sync-classes
+        name: sync-users
       restartPolicy: Always

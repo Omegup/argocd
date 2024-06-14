@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sync-classes
+  name: sync-notifications
   labels:
-    app: sync-classes
+    app: sync-notifications
 spec:
   replicas: {{ .Values.sync.replicas }}
   selector:
     matchLabels:
-      app: sync-classes
+      app: sync-notifications
   template:
     metadata:
       labels:
-        app: sync-classes
+        app: sync-notifications
       annotations:
         commit-id: "{{ .Values.commitTrack }}"
     spec:
       containers:
       - args:
         - --expose-gc
-        - classes.js
+        - notifications.js
         env:
         - name: MONGO_URL
           value: "{{ .Values.mongoUrl }}"
         image: omegup/school-sync:{{ include "school-app.commitTag" . }}
         imagePullPolicy: Always
-        name: sync-classes
+        name: sync-notifications
       restartPolicy: Always
