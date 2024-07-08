@@ -41,9 +41,6 @@ spec:
             value: {{ $value | quote }}
           {{- end }}
           {{- end }}
-          volumeMounts:
-            - mountPath: /data/back
-              name: data-school-back
       restartPolicy: Always
       volumes:
         - name: data-school-back
