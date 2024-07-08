@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "school-app.mongo.fullname" . }}
   labels:
@@ -39,6 +39,3 @@ spec:
         - name: data-school-db
           persistentVolumeClaim:
             claimName: {{ include "school-app.mongo.fullname" . }}
-        - name: mongo-school-claim0
-          persistentVolumeClaim:
-            claimName: {{ include "school-app.mongo.fullname" . }}-claim0
