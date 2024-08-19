@@ -110,8 +110,8 @@ affinity: {}
 #*************************************************************************************#
 env: "preprod"
 commitTrack: "some-commit-id"
-preprodCommitTag: "V1.5.7"
-prodCommitTag: "V1.5.6"
+preprodCommitTag: "V1.5.8"
+prodCommitTag: "V1.5.7"
   
 rabbitmqUrl: "amqp://rabbitmq.rabbits:5672"
 mongoOplogUrl: "mongodb://school-app-mongo:27017/local?directConnection=true"
@@ -155,6 +155,8 @@ backSchool:
   LIMIT: "30"
   LANG_SYSTEM: "'fr'"   
   PICTURE_STORAGE: "PROD"  
+  CURRENCY: false
+  VACATIONS: false
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
