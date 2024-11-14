@@ -63,20 +63,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "school-app.mongo.fullname" . }}-claim0
-  labels:
-    app: {{ include "school-app.mongo.name" . }}
-spec:
-  accessModes:
-    - {{ .Values.mongo.persistence.claim0.accessMode }}
-  resources:
-    requests:
-      storage: {{ .Values.mongo.persistence.claim0.size }}
-  storageClassName: {{ .Values.mongo.persistence.claim0.storageClass | quote }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: {{ include "school-app.back-school.fullname" . }}
   labels:
     app: {{ include "school-app.back-school.name" . }}
