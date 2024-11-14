@@ -157,6 +157,7 @@ backSchool:
   PICTURE_STORAGE: "PROD"  
   CURRENCY: false
   VACATIONS: false
+  EVALUATION: false
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
