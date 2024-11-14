@@ -154,7 +154,7 @@ backSchool:
   SCHOOL_MAX_USERS: "false"
   LIMIT: "30"
   LANG_SYSTEM: "'fr'"   
-  PICTURE_STORAGE: "PROD"  
+  PICTURE_STORAGE: "DEV"  
   CURRENCY: false
   VACATIONS: false
   EVALUATION: false
