@@ -135,7 +135,7 @@ backSchool:
   EXAMS: "true"
   FINANCE: "true"
   SESSIONS: "true"
-  STORAGE_PATH_IMAGES: "http://161.97.84.155:31111/cdn/storage/pictures"
+  STORAGE_PATH_IMAGES: "/home/node/school/school-images/images/"
   STORAGE_PATH_FILES: "/home/node/school/school-files/files/"
   STORAGE_PATH_EXELS: "/home/node/school/school-files/excels/"
   STORAGE_PATH_VIDEOS: "/home/node/school/school-videos/videos/"
