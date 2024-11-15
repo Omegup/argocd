@@ -110,8 +110,8 @@ affinity: {}
 #*************************************************************************************#
 env: "preprod"
 commitTrack: "some-commit-id"
-preprodCommitTag: "V1.7.0"
-prodCommitTag: "V1.6.9"
+preprodCommitTag: "V1.7.1"
+prodCommitTag: "V1.7.0"
   
 rabbitmqUrl: "amqp://rabbitmq.rabbits:5672"
 mongoOplogUrl: "mongodb://school-app-mongo:27017/local?directConnection=true"
@@ -135,7 +135,7 @@ backSchool:
   EXAMS: "true"
   FINANCE: "true"
   SESSIONS: "true"
-  STORAGE_PATH_IMAGES: "http://161.97.84.155:31111/cdn/storage/pictures"
+  STORAGE_PATH_IMAGES: "/home/node/school/school-images/images/"
   STORAGE_PATH_FILES: "/home/node/school/school-files/files/"
   STORAGE_PATH_EXELS: "/home/node/school/school-files/excels/"
   STORAGE_PATH_VIDEOS: "/home/node/school/school-videos/videos/"
@@ -154,9 +154,10 @@ backSchool:
   SCHOOL_MAX_USERS: "false"
   LIMIT: "30"
   LANG_SYSTEM: "'fr'"   
-  PICTURE_STORAGE: "PROD"  
+  PICTURE_STORAGE: "DEV"  
   CURRENCY: false
   VACATIONS: false
+  EVALUATION: false
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
@@ -217,9 +218,6 @@ mongo:
     - mountPath: /data/db
       name: data-school-db
   volumes:
-    - name: mongo-school-claim0
-      persistentVolumeClaim:
-        claimName: mongo-school-claim0
     - name: data-school-db
       persistentVolumeClaim:
         claimName: mongo-school
