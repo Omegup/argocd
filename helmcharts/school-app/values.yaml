@@ -218,9 +218,6 @@ mongo:
     - mountPath: /data/db
       name: data-school-db
   volumes:
-    - name: mongo-school-claim0
-      persistentVolumeClaim:
-        claimName: mongo-school-claim0
     - name: data-school-db
       persistentVolumeClaim:
         claimName: mongo-school
