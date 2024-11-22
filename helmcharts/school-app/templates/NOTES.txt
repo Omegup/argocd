@@ -20,7 +20,3 @@
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
 {{- end }}
-
-
-hpa.yaml => Horizontal Pod Autoscaler (HPA)
-ingress.yaml => This is a Helm chart template for defining an Ingress resource in Kubernetes, which manages external access to services in a cluster, typically HTTP. 
