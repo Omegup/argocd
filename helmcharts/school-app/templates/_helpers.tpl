@@ -94,6 +94,13 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
+{{- define "school-app.mongodb-backup.fullname" -}}
+{{- if .Values.mongodb-backup-school.fullnameOverride -}}
+{{- .Values.mongodb-backup-school.fullnameOverride -}}
+{{- else -}}
+{{- printf "%s-mongodb-backup-school" (include "school-app.fullname" .) -}}
+{{- end -}}
+{{- end -}}
 
 {{- define "school-app.commitTag" -}}
 {{- if eq .Values.env "prod" -}}

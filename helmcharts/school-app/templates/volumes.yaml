@@ -57,3 +57,19 @@ spec:
     requests:
       storage: {{ .Values.backSchool.persistence.size }}
   storageClassName: {{ .Values.backSchool.persistence.storageClass | quote }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "school-app.mongodb-backup.fullname" . }}
+  labels:
+    app: {{ include "school-app.mongodb-backup.name" . }}
+spec:
+  accessModes:
+    - {{ .Values.mongodb-backup.persistence.claim.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.mongodb-backup.persistence.claim.size }}
+  storageClassName: {{ .Values.mongodb-backup.persistence.claim.storageClass | quote }}
+---

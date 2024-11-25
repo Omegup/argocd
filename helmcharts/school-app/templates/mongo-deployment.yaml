@@ -34,8 +34,13 @@ spec:
           volumeMounts:
             - mountPath: /data/db
               name: data-school-db
+            - mountPath: /docker-entrypoint-initdb.d
+              name: init-script
       restartPolicy: Always
       volumes:
         - name: data-school-db
           persistentVolumeClaim:
             claimName: {{ include "school-app.mongo.fullname" . }}
+        - name: init-script
+          configMap:
+            name: mongo-init-script
