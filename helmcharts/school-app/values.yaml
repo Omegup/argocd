@@ -110,8 +110,8 @@ affinity: {}
 #*************************************************************************************#
 env: "preprod"
 commitTrack: "some-commit-id"
-preprodCommitTag: "V1.7.3"
-prodCommitTag: "V1.7.2"
+preprodCommitTag: "V1.7.4"
+prodCommitTag: "V1.7.3"
   
 rabbitmqUrl: "amqp://rabbitmq.rabbits:5672"
 mongoOplogUrl: "mongodb://school-app-mongo:27017/local?directConnection=true"
@@ -222,3 +222,11 @@ mongo:
     - name: data-school-db
       persistentVolumeClaim:
         claimName: mongo-school
+
+mongodb-backup:
+  persistence: 
+    claim:
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: "standard" 
