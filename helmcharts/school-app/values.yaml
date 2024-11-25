@@ -110,8 +110,8 @@ affinity: {}
 #*************************************************************************************#
 env: "preprod"
 commitTrack: "some-commit-id"
-preprodCommitTag: "V1.7.4"
-prodCommitTag: "V1.7.3"
+preprodCommitTag: "V1.7.5"
+prodCommitTag: "V1.7.4"
   
 rabbitmqUrl: "amqp://rabbitmq.rabbits:5672"
 mongoOplogUrl: "mongodb://school-app-mongo:27017/local?directConnection=true"
@@ -223,7 +223,7 @@ mongo:
       persistentVolumeClaim:
         claimName: mongo-school
 
-mongodb-backup:
+mongodbBackup:
   persistence: 
     claim:
       enabled: true
