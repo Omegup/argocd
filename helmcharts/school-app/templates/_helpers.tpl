@@ -94,7 +94,7 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
-{{- define "school-app.mongodb-backup-school.fullname" -}}
+{{- define "school-app.mongodbBackup-school.fullname" -}}
 {{- if .Values.mongodbBackup.fullnameOverride -}}
 {{- .Values.mongodbBackup.fullnameOverride -}}
 {{- else -}}

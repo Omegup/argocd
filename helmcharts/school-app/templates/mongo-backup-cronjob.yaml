@@ -32,4 +32,4 @@ spec:
           volumes:
           - name: backup-storage
             persistentVolumeClaim:
-              claimName: {{ include "school-app.mongodb-backup-school.fullname" . }}
+              claimName: {{ include "school-app.mongodbBackup-school.fullname" . }}
