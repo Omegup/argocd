@@ -95,10 +95,10 @@ Create the name of the service account to use
 {{- end -}}
 
 {{- define "school-app.mongodb-backup-school.fullname" -}}
-{{- if .Values.mongodb-backup-school.fullnameOverride -}}
-{{- .Values.mongodb-backup-school.fullnameOverride -}}
+{{- if .Values.mongodbBackup.fullnameOverride -}}
+{{- .Values.mongodbBackup.fullnameOverride -}}
 {{- else -}}
-{{- printf "%s-mongodb-backup-school" (include "school-app.fullname" .) -}}
+{{- printf "%s-mongodb-backup" (include "school-app.fullname" .) -}}
 {{- end -}}
 {{- end -}}
 
