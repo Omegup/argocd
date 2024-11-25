@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: mongodb-backup
 spec:
-  schedule: "0 0 * * *" # At midnight every day
+  schedule: "0 12 * * *" # At midnight every day
   jobTemplate:
     spec:
       template:
@@ -32,4 +32,4 @@ spec:
           volumes:
           - name: backup-storage
             persistentVolumeClaim:
-              claimName: {{ include "school-app.mongodb-backup.fullname" . }}
+              claimName: {{ include "school-app.mongodb-backup-school.fullname" . }}

@@ -62,9 +62,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ include "school-app.mongodb-backup.fullname" . }}
+  name: {{ include "school-app.mongodb-backup-school.fullname" . }}
   labels:
-    app: {{ include "school-app.mongodb-backup.name" . }}
+    app: {{ include "school-app.mongodb-backup-school.name" . }}
 spec:
   capacity:
     storage: {{ .Values.mongodb-backup.persistence.claim.size }}
@@ -73,4 +73,19 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Values.mongodb-backup.persistence.claim.storageClass | quote }}
   hostPath:
-    path: /mnt/data/{{ include "school-app.mongodb-backup.fullname" . }}
+    path: /mnt/data/{{ include "school-app.mongodb-backup-school.fullname" . }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "school-app.mongodb-backup-school.fullname" . }}
+  labels:
+    app: {{ include "school-app.mongodb-backup-school.name" . }}
+spec:
+  accessModes:
+    - {{ .Values.mongodb-backup.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.mongodb-backup.persistence.size }}
+  storageClassName: {{ .Values.mongodb-backup.persistence.storageClass | quote }}
